@@ -13,10 +13,23 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Create hash
+        run: |
+          echo "Creating hash"
+          sha256sum assets/data/MDD.zip > assets/data/MDD.zip.sha256
+
       - name: Upload release
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: assets/data/MDD.zip
           asset_name: MDD.zip
+          tag: ${{ github.ref }}
+
+      - name: Upload hash
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: assets/data/MDD.zip.sha256
+          asset_name: MDD.zip.sha256
           tag: ${{ github.ref }}
