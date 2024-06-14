@@ -28,14 +28,14 @@ jobs:
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: $DATA_PATH/$MDD_FILENAME
-          asset_name: $MDD_FILENAME
+          file: ${{env.DATA_PATH}}/${{env.MDD_FILENAME}}
+          asset_name: ${{env.MDD_FILENAME}}
           tag: ${{ github.ref }}
 
       - name: Upload hash
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: $DATA_PATH/$SHA256_FILENAME
-          asset_name: $SHA256_FILENAME
+          file: ${{env.DATA_PATH}}/${{env.SHA256_FILENAME}}
+          asset_name: ${{env.SHA256_FILENAME}}
           tag: ${{ github.ref }}
